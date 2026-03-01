@@ -1,7 +1,7 @@
 # syntax=docker/dockerfile:1
 
 # ── Stage 1: Build ──
-FROM golang:1.25-bookworm AS builder
+FROM docker.io/library/golang:1.21-alpine AS builder
 
 WORKDIR /src
 
@@ -30,7 +30,7 @@ RUN set -eux; \
     ${TAGS} -o /out/goclaw .
 
 # ── Stage 2: Runtime ──
-FROM alpine:3.22
+FROM docker.io/library/alpine:3.18.4
 
 ARG ENABLE_SANDBOX=false
 
